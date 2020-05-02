@@ -21,5 +21,19 @@ Note:
 
 */
 public class Jewls {
-
+	public int numJewelsInStones(String J, String S) {
+        
+        Set<Character> jewelSet = new HashSet<>();
+        
+        for(int i = 0; i <  J.length(); i++) {
+            jewelSet.add(J.charAt(i));
+        }
+        int jewels = 0;
+        for(int i = 0; i < S.length();i++) {
+            if(jewelSet.contains(S.charAt(i))) {
+                jewels++;
+            }
+        }
+        return jewels;
+    }
 }
