@@ -14,5 +14,26 @@ canConstruct("aa", "aab") -> true
 */
 
 public class Ransom {
-
+	public boolean canConstruct(String ransomNote, String magazine) {
+        Map<Character, Integer> magazineMap = new HashMap<>();
+        
+        for(int i = 0; i < magazine.length(); i++) {
+            Character c = magazine.charAt(i);
+            if(magazineMap.containsKey(c)) {
+                magazineMap.put(c, magazineMap.get(c) + 1);
+            } else {
+                magazineMap.put(c,1);
+            }
+        }
+        for(int i = 0; i < ransomNote.length(); i++) {
+            Character c = ransomNote.charAt(i);
+            if(magazineMap.containsKey(c)) {
+                if(magazineMap.get(c) == 1) {
+                    magazineMap.remove(c);
+                } else magazineMap.put(c, magazineMap.get(c) - 1);
+            } else return false;
+        }
+        return true;
+        
+    }
 }
