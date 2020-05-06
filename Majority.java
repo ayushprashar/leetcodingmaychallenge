@@ -18,4 +18,32 @@ Output: 2
 
 public class Majority {
 
+	class Max {
+        int element;
+        int freq;
+        
+        Max(){}
+        
+        Max(int e, int f) {
+            this.element = e;
+            this.freq = f;
+        }
+    }
+    public int majorityElement(int[] nums) {
+        Max max = new Max(0,0);
+        Map<Integer, Integer> freqMap = new HashMap<>();
+        for(int i = 0; i<  nums.length; i++) {
+            int num = nums[i];
+            if(!freqMap.containsKey(num)) {
+                freqMap.put(num,0);
+            }
+            int freq = freqMap.get(num) + 1;
+            if(freq > max.freq) {
+                max.element = num;
+                max.freq = freq;
+            }
+            freqMap.put(num, freq);
+        }
+        return max.element;
+    }
 }
